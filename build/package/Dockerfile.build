@@ -1,12 +1,11 @@
-FROM golang:1.13.1-alpine
-MAINTAINER "Stakater Team"
+FROM golang:1.16.6-alpine
 
 RUN apk update
 
 RUN apk -v --update \
     add git build-base && \
     rm -rf /var/cache/apk/* && \
-    mkdir -p "$GOPATH/src/github.com/stakater/GitWebhookProxy"
+    mkdir -p "$GOPATH/src/github.com/rmenn/GitWebhookProxy"
 
 ARG PACKR_VERSION=2.7.1
 ARG PACKR_FILENAME=packr_${PACKR_VERSION}_linux_386.tar.gz
@@ -18,9 +17,9 @@ RUN mkdir -p /tmp/packr/ && \
     mv /tmp/packr/packr2 /usr/local/bin/packr2 && \
     rm -rf /tmp/packr
 
-ADD . "$GOPATH/src/github.com/stakater/GitWebhookProxy"
+ADD . "$GOPATH/src/github.com/rmenn/GitWebhookProxy"
 
-RUN cd "$GOPATH/src/github.com/stakater/GitWebhookProxy" && \
+RUN cd "$GOPATH/src/github.com/rmenn/GitWebhookProxy" && \
     go mod download && \
     CGO_ENABLED=0 GOOS=linux GOARCH=amd64 packr2 build -a --installsuffix cgo --ldflags="-s" -o /GitWebhookProxy && \
     packr2 clean

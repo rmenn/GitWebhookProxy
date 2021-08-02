@@ -1,5 +1,4 @@
-FROM stakater/base-alpine:3.7
-LABEL author="stakater"
+FROM stakater/base-alpine:3.13
 
 COPY ./gitwebhookproxy /
 
