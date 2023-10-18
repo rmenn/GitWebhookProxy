@@ -6,7 +6,7 @@ BUILDER ?= gitwebhookproxy-builder
 BINARY ?= GitWebhookProxy
 DOCKER_IMAGE ?= rmenn/gitwebhookproxy
 # Default value "dev"
-DOCKER_TAG ?= v0.0.1
+DOCKER_TAG ?= v0.0.2
 REPOSITORY = ${DOCKER_IMAGE}:${DOCKER_TAG}
 
 VERSION=$(shell cat .version)
